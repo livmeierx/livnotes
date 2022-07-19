@@ -44,3 +44,14 @@ function createNote(body, notesArray) {
     return newNote;
 }
 
+// HTTP POST request
+app.post('/api/notes', (req, res) => {
+    const newNote = createNote(req.body, allNotes);
+    res.json(newNote);
+});
+
+// listening for host and port
+app.listen(PORT, () => {
+    console.log(`API server now on port ${PORT}!`);
+});
+
