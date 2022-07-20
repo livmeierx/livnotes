@@ -26,7 +26,7 @@ const hide = elem => {
 let activeNote = {};
 
 const getNotes = () =>
-  fetch('/api/notes.html', {
+  fetch('/api/notes', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
@@ -34,7 +34,7 @@ const getNotes = () =>
   });
 
 const saveNote = note =>
-  fetch('/api/notes.html', {
+  fetch('/api/notes', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -43,7 +43,7 @@ const saveNote = note =>
   });
 
 const deleteNote = id =>
-  fetch(`/api/notes.html/${id}`, {
+  fetch(`/api/notes/${id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json'
@@ -117,10 +117,10 @@ const handleRenderSaveBtn = () => {
 };
 
 // Render the list of note titles
-const renderNoteList = async notes => {
+const renderNoteList = async (notes) => {
   let jsonNotes = await notes.json();
   if (window.location.pathname === '/notes.html') {
-    noteList.forEach(el => (el.innerHTML = ''));
+    noteList.forEach((el) => (el.innerHTML = ''));
   }
 
   let noteListItems = [];
