@@ -24,6 +24,10 @@ app.get('/', (req,res) => {
     res.sendFile(path.join(_dirname, './public/index.html'));
 });
 
+app.get('*', (req, res) => {
+    res.sendFile(path.join(_dirname, './public/index.html'));
+});
+
 // function to create new note
 function createNote(body, notesArray) {
     const newNote = body;
