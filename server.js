@@ -1,15 +1,17 @@
+const PORT = process.env.PORT || 3001;
+
 const fs = require('fs');
 const path = require('path');
-const PORT = process.env.PORT || 3001;
-const allNotes = require('./db/db.json');
 
 const express = require('express');
 const app = express();
 
+const allNotes = require('./db/db.json');
+
 // adding middleware
+app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(express.static('public'));
-app.use(express.urlencoded({extended: true}));
 
 // route handlers to GET requests
 app.get('api/notes', (req, res) => {
@@ -49,7 +51,7 @@ function createNote(body, notesArray) {
 }
 
 // HTTP POST request
-app.post('/api/notes.html', (req, res) => {
+app.post('/api/notes', (req, res) => {
     const newNote = createNote(req.body, allNotes);
     res.json(newNote);
 });
