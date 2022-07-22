@@ -4,18 +4,21 @@ const fs = require('fs')
 // npm package that allows for unique ids to be created
 var uniqid = require('uniqid');
 
-
 // routing
 module.exports = (app) => {
 
-  // GET /api/notes s as JSON.
+  // GET /api/notes 
   app.get('/api/notes', (req, res) => {
-    res.sendFile(path.join(__dirname, '../db/db.json'));
+    let db = fs.readFileSync('./db/db.json');
+    db = JSON.parse(db);
+    res.json(db);
+
+    console.log(db);
   });
 
   // POST /api/notes  
   app.post('/api/notes', (req, res) => {
-    let db = fs.readFileSync('db/db.json');
+    let db = fs.readFileSync('./db/db.json');
     db = JSON.parse(db);
     res.json(db);
 
@@ -27,7 +30,7 @@ module.exports = (app) => {
     };
 
     db.push(userNote);
-    fs.writeFileSync('db/db.json', JSON.stringify(db));
+    fs.writeFileSync('./db/db.json', JSON.stringify(db));
     res.json(db);
 
   });
@@ -36,12 +39,12 @@ module.exports = (app) => {
   // DELETE /api/notes/:id  
   app.delete('/api/notes/:id', (req, res) => {
    
-    let db = JSON.parse(fs.readFileSync('db/db.json'))
+    let db = JSON.parse(fs.readFileSync('./db/db.json'))
    
     let deleteNotes = db.filter(item => item.id !== req.params.id);
    
-    fs.writeFileSync('db/db.json', JSON.stringify(deleteNotes));
+    fs.writeFileSync('./db/db.json', JSON.stringify(deleteNotes));
     res.json(deleteNotes);
     
-  })
+  });
 };
