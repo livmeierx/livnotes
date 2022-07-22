@@ -13,7 +13,7 @@ module.exports = (app) => {
     db = JSON.parse(db);
     res.json(db);
 
-    console.log(db);
+    // console.log(db);
   });
 
   // POST /api/notes  

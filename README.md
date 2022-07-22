@@ -1,6 +1,6 @@
 ## Express.js Challenge: Note Taker
 
-README Generator
+Welcome to Liv Notes! 
 
 ## Description
 I was tasked with creating a note taker application that can be used to write and save notes. The app uses an Express.js back end and will save and retrieve user generated note data from a JSON file.
